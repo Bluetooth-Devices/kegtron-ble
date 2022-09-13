@@ -92,7 +92,7 @@ class KegtronBluetoothDeviceData(BluetoothData):
         else:
             port_count = "Single port device"
 
-        port_name = str(port_name.decode("utf-8").rstrip('\x00'))
+        port_name = str(port_name.decode("utf-8").rstrip("\x00"))
 
         self.update_sensor(
             key="keg_size",

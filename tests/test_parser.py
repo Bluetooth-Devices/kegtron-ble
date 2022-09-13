@@ -18,7 +18,9 @@ def test_kegtron_kt100():
     parser = KegtronBluetoothDeviceData()
     service_info = BluetoothServiceInfo(
         name="D0:CF:5E:5C:9B:75",
-        manufacturer_data={65535: b"I\xef\x13\x88\x02\xe2\x01Single Port\x00\x00\x00\x00\x00\x00\x00\x00\x00"},
+        manufacturer_data={
+            65535: b"I\xef\x13\x88\x02\xe2\x01Single Port\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+        },
         address="D0:CF:5E:5C:9B:75",
         rssi=-82,
         service_uuids=[],
@@ -123,11 +125,14 @@ def test_kegtron_kt100():
         },
     )
 
+
 def test_kegtron_kt200():
     parser = KegtronBluetoothDeviceData()
     service_info = BluetoothServiceInfo(
         name="D0:CF:5E:5C:9B:75",
-        manufacturer_data={65535: b"\xe62:\x98\x02\xe2Q2nd Port\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"},
+        manufacturer_data={
+            65535: b"\xe62:\x98\x02\xe2Q2nd Port\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+        },
         address="D0:CF:5E:5C:9B:75",
         rssi=-82,
         service_uuids=[],
