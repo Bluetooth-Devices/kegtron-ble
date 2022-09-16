@@ -108,7 +108,8 @@ class KegtronBluetoothDeviceData(BluetoothData):
         else:
             _LOGGER.info(
                 "Kegtron device is reporting a new port name, please report at "
-                "https://github.com/Bluetooth-Devices/kegtron-ble data: %s", data
+                "https://github.com/Bluetooth-Devices/kegtron-ble data: %s",
+                data,
             )
             return None
         if port_index in [1, 2]:
