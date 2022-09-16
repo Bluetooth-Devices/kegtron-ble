@@ -114,7 +114,7 @@ def test_kegtron_kt100():
             ),
             DeviceKey(key="volume_dispensed_port_1", device_id=None): SensorValue(
                 device_key=DeviceKey(key="volume_dispensed_port_1", device_id=None),
-                name="Single Port",
+                name="Volume Dispensed Single Port",
                 native_value=0.738,
             ),
             DeviceKey(key="signal_strength", device_id=None): SensorValue(
@@ -226,7 +226,7 @@ def test_kegtron_kt200():
             ),
             DeviceKey(key="volume_dispensed_port_2", device_id=None): SensorValue(
                 device_key=DeviceKey(key="volume_dispensed_port_2", device_id=None),
-                name="2nd Port",
+                name="Volume Dispensed 2nd Port",
                 native_value=0.738,
             ),
             DeviceKey(key="signal_strength", device_id=None): SensorValue(

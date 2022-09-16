@@ -129,14 +129,14 @@ class KegtronBluetoothDeviceData(BluetoothData):
                 key="volume_dispensed_port_1",
                 native_unit_of_measurement=Units.VOLUME_LITERS,
                 native_value=vol_disp / 1000,
-                name=port_name,
+                name=f"Volume Dispensed {port_name}",
             )
         elif port_index == 2:
             self.update_sensor(
                 key="volume_dispensed_port_2",
                 native_unit_of_measurement=Units.VOLUME_LITERS,
                 native_value=vol_disp / 1000,
-                name=port_name,
+                name=f"Volume Dispensed {port_name}",
             )
         else:
             return None
