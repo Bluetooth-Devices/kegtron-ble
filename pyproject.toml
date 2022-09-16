@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kegtron-ble"
-version = "0.1.1"
+version = "0.2.0"
 description = "Kegtron BLE support"
 authors = ["E. Klamer <e.klamer@gmail.com>"]
 license = "MIT"
