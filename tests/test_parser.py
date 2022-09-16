@@ -40,6 +40,11 @@ def test_kegtron_kt100():
             )
         },
         entity_descriptions={
+            DeviceKey(key="port_count", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="port_count", device_id=None),
+                device_class=None,
+                native_unit_of_measurement=None,
+            ),
             DeviceKey(key="keg_size", device_id=None): SensorDescription(
                 device_key=DeviceKey(key="keg_size", device_id=None),
                 device_class=None,
@@ -60,18 +65,8 @@ def test_kegtron_kt100():
                 device_class=None,
                 native_unit_of_measurement=None,
             ),
-            DeviceKey(key="port_index", device_id=None): SensorDescription(
-                device_key=DeviceKey(key="port_index", device_id=None),
-                device_class=None,
-                native_unit_of_measurement=None,
-            ),
-            DeviceKey(key="port_count", device_id=None): SensorDescription(
-                device_key=DeviceKey(key="port_count", device_id=None),
-                device_class=None,
-                native_unit_of_measurement=None,
-            ),
-            DeviceKey(key="volume_dispensed_port_1", device_id=None): SensorDescription(
-                device_key=DeviceKey(key="volume_dispensed_port_1", device_id=None),
+            DeviceKey(key="volume_dispensed", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="volume_dispensed", device_id=None),
                 device_class=None,
                 native_unit_of_measurement=Units.VOLUME_LITERS,
             ),
@@ -82,6 +77,11 @@ def test_kegtron_kt100():
             ),
         },
         entity_values={
+            DeviceKey(key="port_count", device_id=None): SensorValue(
+                device_key=DeviceKey(key="port_count", device_id=None),
+                name="Port Count",
+                native_value="Single port device",
+            ),
             DeviceKey(key="keg_size", device_id=None): SensorValue(
                 device_key=DeviceKey(key="keg_size", device_id=None),
                 name="Keg Size",
@@ -102,19 +102,9 @@ def test_kegtron_kt100():
                 name="Port State",
                 native_value="Configured",
             ),
-            DeviceKey(key="port_index", device_id=None): SensorValue(
-                device_key=DeviceKey(key="port_index", device_id=None),
-                name="Port Index",
-                native_value=1,
-            ),
-            DeviceKey(key="port_count", device_id=None): SensorValue(
-                device_key=DeviceKey(key="port_count", device_id=None),
-                name="Port Count",
-                native_value="Single port device",
-            ),
-            DeviceKey(key="volume_dispensed_port_1", device_id=None): SensorValue(
-                device_key=DeviceKey(key="volume_dispensed_port_1", device_id=None),
-                name="Volume Dispensed Single Port",
+            DeviceKey(key="volume_dispensed", device_id=None): SensorValue(
+                device_key=DeviceKey(key="volume_dispensed", device_id=None),
+                name="Volume Dispensed",
                 native_value=0.738,
             ),
             DeviceKey(key="signal_strength", device_id=None): SensorValue(
@@ -152,33 +142,28 @@ def test_kegtron_kt200():
             )
         },
         entity_descriptions={
-            DeviceKey(key="keg_size", device_id=None): SensorDescription(
-                device_key=DeviceKey(key="keg_size", device_id=None),
-                device_class=None,
-                native_unit_of_measurement=Units.VOLUME_LITERS,
-            ),
-            DeviceKey(key="keg_type", device_id=None): SensorDescription(
-                device_key=DeviceKey(key="keg_type", device_id=None),
-                device_class=None,
-                native_unit_of_measurement=None,
-            ),
-            DeviceKey(key="volume_start", device_id=None): SensorDescription(
-                device_key=DeviceKey(key="volume_start", device_id=None),
-                device_class=None,
-                native_unit_of_measurement=Units.VOLUME_LITERS,
-            ),
-            DeviceKey(key="port_state", device_id=None): SensorDescription(
-                device_key=DeviceKey(key="port_state", device_id=None),
-                device_class=None,
-                native_unit_of_measurement=None,
-            ),
-            DeviceKey(key="port_index", device_id=None): SensorDescription(
-                device_key=DeviceKey(key="port_index", device_id=None),
-                device_class=None,
-                native_unit_of_measurement=None,
-            ),
             DeviceKey(key="port_count", device_id=None): SensorDescription(
                 device_key=DeviceKey(key="port_count", device_id=None),
+                device_class=None,
+                native_unit_of_measurement=None,
+            ),
+            DeviceKey(key="keg_size_port_2", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="keg_size_port_2", device_id=None),
+                device_class=None,
+                native_unit_of_measurement=Units.VOLUME_LITERS,
+            ),
+            DeviceKey(key="keg_type_port_2", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="keg_type_port_2", device_id=None),
+                device_class=None,
+                native_unit_of_measurement=None,
+            ),
+            DeviceKey(key="volume_start_port_2", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="volume_start_port_2", device_id=None),
+                device_class=None,
+                native_unit_of_measurement=Units.VOLUME_LITERS,
+            ),
+            DeviceKey(key="port_state_port_2", device_id=None): SensorDescription(
+                device_key=DeviceKey(key="port_state_port_2", device_id=None),
                 device_class=None,
                 native_unit_of_measurement=None,
             ),
@@ -194,35 +179,30 @@ def test_kegtron_kt200():
             ),
         },
         entity_values={
-            DeviceKey(key="keg_size", device_id=None): SensorValue(
-                device_key=DeviceKey(key="keg_size", device_id=None),
-                name="Keg Size",
-                native_value=58.93,
-            ),
-            DeviceKey(key="keg_type", device_id=None): SensorValue(
-                device_key=DeviceKey(key="keg_type", device_id=None),
-                name="Keg Type",
-                native_value="Other (58.93 L)",
-            ),
-            DeviceKey(key="volume_start", device_id=None): SensorValue(
-                device_key=DeviceKey(key="volume_start", device_id=None),
-                name="Volume Start",
-                native_value=15.0,
-            ),
-            DeviceKey(key="port_state", device_id=None): SensorValue(
-                device_key=DeviceKey(key="port_state", device_id=None),
-                name="Port State",
-                native_value="Configured",
-            ),
-            DeviceKey(key="port_index", device_id=None): SensorValue(
-                device_key=DeviceKey(key="port_index", device_id=None),
-                name="Port Index",
-                native_value=2,
-            ),
             DeviceKey(key="port_count", device_id=None): SensorValue(
                 device_key=DeviceKey(key="port_count", device_id=None),
                 name="Port Count",
                 native_value="Dual port device",
+            ),
+            DeviceKey(key="keg_size_port_2", device_id=None): SensorValue(
+                device_key=DeviceKey(key="keg_size_port_2", device_id=None),
+                name="Keg Size 2nd Port",
+                native_value=58.93,
+            ),
+            DeviceKey(key="keg_type_port_2", device_id=None): SensorValue(
+                device_key=DeviceKey(key="keg_type_port_2", device_id=None),
+                name="Keg Type 2nd Port",
+                native_value="Other (58.93 L)",
+            ),
+            DeviceKey(key="volume_start_port_2", device_id=None): SensorValue(
+                device_key=DeviceKey(key="volume_start_port_2", device_id=None),
+                name="Volume Start 2nd Port",
+                native_value=15.0,
+            ),
+            DeviceKey(key="port_state_port_2", device_id=None): SensorValue(
+                device_key=DeviceKey(key="port_state_port_2", device_id=None),
+                name="Port State 2nd Port",
+                native_value="Configured",
             ),
             DeviceKey(key="volume_dispensed_port_2", device_id=None): SensorValue(
                 device_key=DeviceKey(key="volume_dispensed_port_2", device_id=None),
