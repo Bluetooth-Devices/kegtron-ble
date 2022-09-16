@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.1 (2022-09-16)
+### Fix
+* Add volume dispensed to port name sensor ([`97799d0`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/97799d01c580ad2a4b90ea2ec9d5e6de29f94015))
+
 ## v0.1.0 (2022-09-13)
 ### Feature
 * Init repo ([`c6f767f`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/c6f767f9ffbfb9c82636d1eb5753a9d03ce3efd6))
