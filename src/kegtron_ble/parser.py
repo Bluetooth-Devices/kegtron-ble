@@ -66,6 +66,7 @@ class KegtronBluetoothDeviceData(BluetoothData):
         self.set_device_manufacturer(manufacturer)
         self._process_update(data)
 
+
     def _process_update(self, data: bytes) -> None:
         """Update from BLE advertisement data."""
         _LOGGER.debug("Parsing Kegtron BLE advertisement data: %s", data)
@@ -77,71 +78,72 @@ class KegtronBluetoothDeviceData(BluetoothData):
         else:
             keg_type = "Other (" + str(keg_size / 1000) + " L)"
 
-        if port & (1 << 0):
+        if port & (1 << 0) == 0:
+            port_state = "Unconfigured (new device)"
+        elif port & (1 << 0) == 1:
             port_state = "Configured"
         else:
-            port_state = "Unconfigured (new device)"
+            return None
 
-        if port & (1 << 4):
-            port_index = 2
+        if port & (1 << 4) == 0:
+            port_index_key = "_port_1"
+            port_index_name = " Port 1"
+        elif port & (1 << 4) == 16:
+            port_index_key = "_port_2"
+            port_index_name = " Port 2"
         else:
-            port_index = 1
+            return None
 
-        if port & (1 << 6):
+        if port & (1 << 6) == 0:
+            port_count = "Single port device"
+            port_index_key = ""
+            port_index_name = ""
+        elif port & (1 << 6) == 64:
             port_count = "Dual port device"
         else:
-            port_count = "Single port device"
+            return None
 
         port_name = str(port_name.decode("utf-8").rstrip("\x00"))
 
         self.update_sensor(
             key="port_count",
+            name="Port Count",
             native_unit_of_measurement=None,
             native_value=port_count,
         )
-        if port_count == "Single port device":
-            post_fix = ""
-            port_name = ""
-        elif port_count == "Dual port device":
-            post_fix = f"_port_{port_index}"
-            port_name = f" {port_name}"
-        else:
-            _LOGGER.info(
-                "Kegtron device is reporting a new port name, please report at "
-                "https://github.com/Bluetooth-Devices/kegtron-ble data: %s",
-                data,
-            )
-            return None
-        if port_index in [1, 2]:
-            self.update_sensor(
-                key=f"keg_size{post_fix}",
-                native_unit_of_measurement=Units.VOLUME_LITERS,
-                native_value=keg_size / 1000,
-                name=f"Keg Size{port_name}",
-            )
-            self.update_sensor(
-                key=f"keg_type{post_fix}",
-                native_unit_of_measurement=None,
-                native_value=keg_type,
-                name=f"Keg Type{port_name}",
-            )
-            self.update_sensor(
-                key=f"volume_start{post_fix}",
-                native_unit_of_measurement=Units.VOLUME_LITERS,
-                native_value=vol_start / 1000,
-                name=f"Volume Start{port_name}",
-            )
-            self.update_sensor(
-                key=f"volume_dispensed{post_fix}",
-                native_unit_of_measurement=Units.VOLUME_LITERS,
-                native_value=vol_disp / 1000,
-                name=f"Volume Dispensed{port_name}",
-            )
-            self.update_sensor(
-                key=f"port_state{post_fix}",
-                native_unit_of_measurement=None,
-                native_value=port_state,
-                name=f"Port State{port_name}",
-            )
-        else:
-            return None
+        self.update_sensor(
+            key=f"keg_size{port_index_key}",
+            name=f"Keg Size{port_index_name}",
+            native_unit_of_measurement=Units.VOLUME_LITERS,
+            native_value=keg_size / 1000,
+        )
+        self.update_sensor(
+            key=f"keg_type{port_index_key}",
+            name=f"Keg Type{port_index_name}",
+            native_unit_of_measurement=None,
+            native_value=keg_type,
+        )
+        self.update_sensor(
+            key=f"volume_start{port_index_key}",
+            name=f"Volume Start{port_index_name}",
+            native_unit_of_measurement=Units.VOLUME_LITERS,
+            native_value=vol_start / 1000,
+        )
+        self.update_sensor(
+            key=f"volume_dispensed{port_index_key}",
+            name=f"Volume Dispensed{port_index_name}",
+            native_unit_of_measurement=Units.VOLUME_LITERS,
+            native_value=vol_disp / 1000,
+        )
+        self.update_sensor(
+            key=f"port_state{port_index_key}",
+            name=f"Port State{port_index_name}",
+            native_unit_of_measurement=None,
+            native_value=port_state,
+        )
+        self.update_sensor(
+            key=f"port_name{port_index_key}",
+            name=f"Port Name{port_index_name}",
+            native_unit_of_measurement=None,
+            native_value=port_name,
+        )
