@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2022-09-17)
+### Feature
+* Port suffix improvements for sensors ([`efbf0ec`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/efbf0ecb6d8042fec5f8c5c298ed595d359b4135))
+* Feat: port suffix improvements for sensors ([`5fbb513`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/5fbb513976f68c3ec2a2562ed2f7d5aae21685e2))
+
 ## v0.2.0 (2022-09-16)
 ### Feature
 * Port specific sensors ([`2cc12cd`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/2cc12cd56e5390be335f324a58cf7985d0a9119c))
