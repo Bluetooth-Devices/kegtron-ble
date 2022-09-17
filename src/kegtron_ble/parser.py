@@ -66,7 +66,6 @@ class KegtronBluetoothDeviceData(BluetoothData):
         self.set_device_manufacturer(manufacturer)
         self._process_update(data)
 
-
     def _process_update(self, data: bytes) -> None:
         """Update from BLE advertisement data."""
         _LOGGER.debug("Parsing Kegtron BLE advertisement data: %s", data)
