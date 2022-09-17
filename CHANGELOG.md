@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.0 (2022-09-16)
+### Feature
+* Port specific sensors ([`2cc12cd`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/2cc12cd56e5390be335f324a58cf7985d0a9119c))
+
+### Fix
+* Error log formatting ([`584fd51`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/584fd5111c5c2362e96c683c226ead1b472b71fc))
+
 ## v0.1.1 (2022-09-16)
 ### Fix
 * Add volume dispensed to port name sensor ([`97799d0`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/97799d01c580ad2a4b90ea2ec9d5e6de29f94015))
