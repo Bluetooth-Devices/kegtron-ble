@@ -13,7 +13,7 @@ from struct import unpack
 from bluetooth_data_tools import short_address
 from bluetooth_sensor_state_data import BluetoothData
 from home_assistant_bluetooth import BluetoothServiceInfo
-from sensor_state_data import Units
+from sensor_state_data import SensorLibrary
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -50,20 +50,48 @@ class KegtronBluetoothDeviceData(BluetoothData):
         if msg_length != 27:
             return
 
-        address = service_info.address
-        manufacturer = "Kegtron"
+        self.address = service_info.address
+        self.manufacturer = "Kegtron"
 
-        (device_id,) = unpack(">B", data[6:7])
+        (port,) = unpack(">B", data[6:7])
 
-        if device_id & (1 << 6):
-            model = "KT-200"
+        if port & (1 << 6) == 0:
+            self.model = "KT-100"
+            self.port_count = "Single port device"
+            self.device_id = None
+            self.port_id = ""
+        elif port & (1 << 6) == 64:
+            self.model = "KT-200"
+            self.port_count = "Dual port device"
+            if port & (1 << 4) == 0:
+                self.device_id = "port 1"
+                self.port_id = "_port_1"
+            elif port & (1 << 4) == 16:
+                self.device_id = "port 2"
+                self.port_id = "_port_2"
+            else:
+                return None
+
         else:
-            model = "KT-100"
+            return
 
-        self.set_device_type(model)
-        self.set_title(f"{manufacturer} {model} {short_address(address)}")
-        self.set_device_name(f"{manufacturer} {model} {short_address(address)}")
-        self.set_device_manufacturer(manufacturer)
+        self.set_title(
+            f"{self.manufacturer} {self.model} {short_address(self.address)}"
+        )
+        self.set_device_name(
+            f"{self.manufacturer} {self.model} {short_address(self.address)}"
+        )
+        self.set_device_type(self.model)
+        self.set_device_manufacturer(self.manufacturer)
+
+        if self.model == "KT-200":
+            self.set_device_name(
+                f"{self.manufacturer} {self.model} {short_address(self.address)}",
+                self.device_id,
+            )
+            self.set_device_type(self.model, self.device_id)
+            self.set_device_manufacturer(self.manufacturer, self.device_id)
+
         self._process_update(data)
 
     def _process_update(self, data: bytes) -> None:
@@ -72,11 +100,6 @@ class KegtronBluetoothDeviceData(BluetoothData):
 
         (keg_size, vol_start, vol_disp, port, port_name) = unpack(">HHHB20s", data)
 
-        if keg_size in KEGTRON_SIZE_DICT:
-            keg_type = KEGTRON_SIZE_DICT[keg_size]
-        else:
-            keg_type = "Other (" + str(keg_size / 1000) + " L)"
-
         if port & (1 << 0) == 0:
             port_state = "Unconfigured (new device)"
         elif port & (1 << 0) == 1:
@@ -84,65 +107,66 @@ class KegtronBluetoothDeviceData(BluetoothData):
         else:
             return None
 
-        if port & (1 << 4) == 0:
-            port_index_key = "_port_1"
-            port_index_name = " Port 1"
-        elif port & (1 << 4) == 16:
-            port_index_key = "_port_2"
-            port_index_name = " Port 2"
+        if keg_size in KEGTRON_SIZE_DICT:
+            keg_type = KEGTRON_SIZE_DICT[keg_size]
         else:
-            return None
-
-        if port & (1 << 6) == 0:
-            port_count = "Single port device"
-            port_index_key = ""
-            port_index_name = ""
-        elif port & (1 << 6) == 64:
-            port_count = "Dual port device"
-        else:
-            return None
+            keg_type = "Other (" + str(keg_size / 1000) + " L)"
 
         port_name = str(port_name.decode("utf-8").rstrip("\x00"))
 
         self.update_sensor(
             key="port_count",
-            name="Port Count",
-            native_unit_of_measurement=None,
-            native_value=port_count,
+            native_unit_of_measurement=SensorLibrary.PORT_COUNT__NONE.native_unit_of_measurement,
+            native_value=self.port_count,
+            device_class=SensorLibrary.PORT_COUNT__NONE.device_class,
         )
         self.update_sensor(
-            key=f"keg_size{port_index_key}",
-            name=f"Keg Size{port_index_name}",
-            native_unit_of_measurement=Units.VOLUME_LITERS,
+            key=f"keg_size{self.port_id}",
+            native_unit_of_measurement=(
+                SensorLibrary.KEG_SIZE__VOLUME_LITERS.native_unit_of_measurement
+            ),
             native_value=keg_size / 1000,
+            device_class=SensorLibrary.KEG_SIZE__VOLUME_LITERS.device_class,
+            device_id=self.device_id,
         )
         self.update_sensor(
-            key=f"keg_type{port_index_key}",
-            name=f"Keg Type{port_index_name}",
-            native_unit_of_measurement=None,
+            key=f"keg_type{self.port_id}",
+            native_unit_of_measurement=(
+                SensorLibrary.KEG_TYPE__NONE.native_unit_of_measurement
+            ),
             native_value=keg_type,
+            device_class=SensorLibrary.KEG_TYPE__NONE.device_class,
+            device_id=self.device_id,
         )
         self.update_sensor(
-            key=f"volume_start{port_index_key}",
-            name=f"Volume Start{port_index_name}",
-            native_unit_of_measurement=Units.VOLUME_LITERS,
+            key=f"volume_start{self.port_id}",
+            native_unit_of_measurement=(
+                SensorLibrary.VOLUME_START__VOLUME_LITERS.native_unit_of_measurement
+            ),
             native_value=vol_start / 1000,
+            device_class=SensorLibrary.VOLUME_START__VOLUME_LITERS.device_class,
+            device_id=self.device_id,
         )
         self.update_sensor(
-            key=f"volume_dispensed{port_index_key}",
-            name=f"Volume Dispensed{port_index_name}",
-            native_unit_of_measurement=Units.VOLUME_LITERS,
+            key=f"volume_dispensed{self.port_id}",
+            native_unit_of_measurement=(
+                SensorLibrary.VOLUME_DISPENSED__VOLUME_LITERS.native_unit_of_measurement
+            ),
             native_value=vol_disp / 1000,
+            device_class=SensorLibrary.VOLUME_DISPENSED__VOLUME_LITERS.device_class,
+            device_id=self.device_id,
         )
         self.update_sensor(
-            key=f"port_state{port_index_key}",
-            name=f"Port State{port_index_name}",
-            native_unit_of_measurement=None,
+            key=f"port_state{self.port_id}",
+            native_unit_of_measurement=SensorLibrary.PORT_STATE__NONE.native_unit_of_measurement,
             native_value=port_state,
+            device_class=SensorLibrary.PORT_STATE__NONE.device_class,
+            device_id=self.device_id,
         )
         self.update_sensor(
-            key=f"port_name{port_index_key}",
-            name=f"Port Name{port_index_name}",
-            native_unit_of_measurement=None,
+            key=f"port_name{self.port_id}",
+            native_unit_of_measurement=SensorLibrary.PORT_NAME__NONE.native_unit_of_measurement,
             native_value=port_name,
+            device_class=SensorLibrary.PORT_NAME__NONE.device_class,
+            device_id=self.device_id,
         )
