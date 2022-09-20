@@ -2,6 +2,15 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2022-09-20)
+### Feature
+* Use device_id for ports ([`554b196`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/554b1967fe34ad6b444ac28bf292bdf3b2ec3197))
+
+### Fix
+* Some more formatting issues ([`5a5edb7`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/5a5edb7258658da04796f60947986f02edb8ff5e))
+* Code formatting issues ([`fb91f4b`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/fb91f4be6b215632624c0564cdbbaa5545c15366))
+* Update poetry files ([`8ef3dd3`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/8ef3dd3d8eb4ddc35d7cc40e3c673ddd88f8e826))
+
 ## v0.3.0 (2022-09-17)
 ### Feature
 * Port suffix improvements for sensors ([`efbf0ec`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/efbf0ecb6d8042fec5f8c5c298ed595d359b4135))
