@@ -191,14 +191,18 @@ def test_kegtron_kt200():
             DeviceKey(
                 key=f"{KEY_VOLUME_START}_port_2", device_id="port 2"
             ): SensorDescription(
-                device_key=DeviceKey(key=f"{KEY_VOLUME_START}_port_2", device_id="port 2"),
+                device_key=DeviceKey(
+                    key=f"{KEY_VOLUME_START}_port_2", device_id="port 2"
+                ),
                 device_class=SensorDeviceClass.VOLUME_START,
                 native_unit_of_measurement=Units.VOLUME_LITERS,
             ),
             DeviceKey(
                 key=f"{KEY_PORT_STATE}_port_2", device_id="port 2"
             ): SensorDescription(
-                device_key=DeviceKey(key=f"{KEY_PORT_STATE}_port_2", device_id="port 2"),
+                device_key=DeviceKey(
+                    key=f"{KEY_PORT_STATE}_port_2", device_id="port 2"
+                ),
                 device_class=SensorDeviceClass.PORT_STATE,
                 native_unit_of_measurement=None,
             ),

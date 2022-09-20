@@ -87,7 +87,7 @@ class KegtronBluetoothDeviceData(BluetoothData):
         if self.model == "KT-200":
             self.set_device_name(
                 f"{self.manufacturer} {self.model} {short_address(self.address)}",
-                self.device_id
+                self.device_id,
             )
             self.set_device_type(self.model, self.device_id)
             self.set_device_manufacturer(self.manufacturer, self.device_id)
@@ -141,15 +141,17 @@ class KegtronBluetoothDeviceData(BluetoothData):
         self.update_sensor(
             key=f"volume_start{self.port_id}",
             native_unit_of_measurement=(
-                SensorLibrary.VOLUME_START__VOLUME_LITERS.native_unit_of_measurement)
-            ,
+                SensorLibrary.VOLUME_START__VOLUME_LITERS.native_unit_of_measurement
+            ),
             native_value=vol_start / 1000,
             device_class=SensorLibrary.VOLUME_START__VOLUME_LITERS.device_class,
             device_id=self.device_id,
         )
         self.update_sensor(
             key=f"volume_dispensed{self.port_id}",
-            native_unit_of_measurement=SensorLibrary.VOLUME_DISPENSED__VOLUME_LITERS.native_unit_of_measurement,
+            native_unit_of_measurement=(
+                SensorLibrary.VOLUME_DISPENSED__VOLUME_LITERS.native_unit_of_measurement
+            ),
             native_value=vol_disp / 1000,
             device_class=SensorLibrary.VOLUME_DISPENSED__VOLUME_LITERS.device_class,
             device_id=self.device_id,
