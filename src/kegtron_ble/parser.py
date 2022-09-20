@@ -13,7 +13,7 @@ from struct import unpack
 from bluetooth_data_tools import short_address
 from bluetooth_sensor_state_data import BluetoothData
 from home_assistant_bluetooth import BluetoothServiceInfo
-from sensor_state_data import SensorLibrary, Units
+from sensor_state_data import SensorLibrary
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -75,13 +75,20 @@ class KegtronBluetoothDeviceData(BluetoothData):
         else:
             return
 
-        self.set_title(f"{self.manufacturer} {self.model} {short_address(self.address)}")
-        self.set_device_name(f"{self.manufacturer} {self.model} {short_address(self.address)}")
+        self.set_title(
+            f"{self.manufacturer} {self.model} {short_address(self.address)}"
+        )
+        self.set_device_name(
+            f"{self.manufacturer} {self.model} {short_address(self.address)}"
+        )
         self.set_device_type(self.model)
         self.set_device_manufacturer(self.manufacturer)
 
         if self.model == "KT-200":
-            self.set_device_name(f"{self.manufacturer} {self.model} {short_address(self.address)}", self.device_id)
+            self.set_device_name(
+                f"{self.manufacturer} {self.model} {short_address(self.address)}",
+                self.device_id
+            )
             self.set_device_type(self.model, self.device_id)
             self.set_device_manufacturer(self.manufacturer, self.device_id)
 
@@ -115,21 +122,27 @@ class KegtronBluetoothDeviceData(BluetoothData):
         )
         self.update_sensor(
             key=f"keg_size{self.port_id}",
-            native_unit_of_measurement=SensorLibrary.KEG_SIZE__VOLUME_LITERS.native_unit_of_measurement,
+            native_unit_of_measurement=(
+                SensorLibrary.KEG_SIZE__VOLUME_LITERS.native_unit_of_measurement
+            ),
             native_value=keg_size / 1000,
             device_class=SensorLibrary.KEG_SIZE__VOLUME_LITERS.device_class,
             device_id=self.device_id,
         )
         self.update_sensor(
             key=f"keg_type{self.port_id}",
-            native_unit_of_measurement=SensorLibrary.KEG_TYPE__NONE.native_unit_of_measurement,
+            native_unit_of_measurement=(
+                SensorLibrary.KEG_TYPE__NONE.native_unit_of_measurement
+            ),
             native_value=keg_type,
             device_class=SensorLibrary.KEG_TYPE__NONE.device_class,
             device_id=self.device_id,
         )
         self.update_sensor(
             key=f"volume_start{self.port_id}",
-            native_unit_of_measurement=SensorLibrary.VOLUME_START__VOLUME_LITERS.native_unit_of_measurement,
+            native_unit_of_measurement=(
+                SensorLibrary.VOLUME_START__VOLUME_LITERS.native_unit_of_measurement)
+            ,
             native_value=vol_start / 1000,
             device_class=SensorLibrary.VOLUME_START__VOLUME_LITERS.device_class,
             device_id=self.device_id,

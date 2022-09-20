@@ -160,13 +160,13 @@ def test_kegtron_kt200():
                 sw_version=None,
                 hw_version=None,
             ),
-            'port 2': SensorDeviceInfo(
-                name='Kegtron KT-200 9B75',
-                model='KT-200',
-                manufacturer='Kegtron',
+            "port 2": SensorDeviceInfo(
+                name="Kegtron KT-200 9B75",
+                model="KT-200",
+                manufacturer="Kegtron",
                 sw_version=None,
-                hw_version=None
-            )
+                hw_version=None,
+            ),
         },
         entity_descriptions={
             DeviceKey(key=KEY_PORT_COUNT, device_id=None): SensorDescription(
@@ -174,33 +174,47 @@ def test_kegtron_kt200():
                 device_class=SensorDeviceClass.PORT_COUNT,
                 native_unit_of_measurement=None,
             ),
-            DeviceKey(key=f"{KEY_KEG_SIZE}_port_2", device_id="port 2"): SensorDescription(
+            DeviceKey(
+                key=f"{KEY_KEG_SIZE}_port_2", device_id="port 2"
+            ): SensorDescription(
                 device_key=DeviceKey(key=f"{KEY_KEG_SIZE}_port_2", device_id="port 2"),
                 device_class=SensorDeviceClass.KEG_SIZE,
                 native_unit_of_measurement=Units.VOLUME_LITERS,
             ),
-            DeviceKey(key=f"{KEY_KEG_TYPE}_port_2", device_id="port 2"): SensorDescription(
+            DeviceKey(
+                key=f"{KEY_KEG_TYPE}_port_2", device_id="port 2"
+            ): SensorDescription(
                 device_key=DeviceKey(key=f"{KEY_KEG_TYPE}_port_2", device_id="port 2"),
                 device_class=SensorDeviceClass.KEG_TYPE,
                 native_unit_of_measurement=None,
             ),
-            DeviceKey(key=f"{KEY_VOLUME_START}_port_2", device_id="port 2"): SensorDescription(
+            DeviceKey(
+                key=f"{KEY_VOLUME_START}_port_2", device_id="port 2"
+            ): SensorDescription(
                 device_key=DeviceKey(key=f"{KEY_VOLUME_START}_port_2", device_id="port 2"),
                 device_class=SensorDeviceClass.VOLUME_START,
                 native_unit_of_measurement=Units.VOLUME_LITERS,
             ),
-            DeviceKey(key=f"{KEY_PORT_STATE}_port_2", device_id="port 2"): SensorDescription(
+            DeviceKey(
+                key=f"{KEY_PORT_STATE}_port_2", device_id="port 2"
+            ): SensorDescription(
                 device_key=DeviceKey(key=f"{KEY_PORT_STATE}_port_2", device_id="port 2"),
                 device_class=SensorDeviceClass.PORT_STATE,
                 native_unit_of_measurement=None,
             ),
-            DeviceKey(key=f"{KEY_PORT_NAME}_port_2", device_id="port 2"): SensorDescription(
+            DeviceKey(
+                key=f"{KEY_PORT_NAME}_port_2", device_id="port 2"
+            ): SensorDescription(
                 device_key=DeviceKey(key=f"{KEY_PORT_NAME}_port_2", device_id="port 2"),
                 device_class=SensorDeviceClass.PORT_NAME,
                 native_unit_of_measurement=None,
             ),
-            DeviceKey(key=f"{KEY_VOLUME_DISPENSED}_port_2", device_id="port 2"): SensorDescription(
-                device_key=DeviceKey(key=f"{KEY_VOLUME_DISPENSED}_port_2", device_id="port 2"),
+            DeviceKey(
+                key=f"{KEY_VOLUME_DISPENSED}_port_2", device_id="port 2"
+            ): SensorDescription(
+                device_key=DeviceKey(
+                    key=f"{KEY_VOLUME_DISPENSED}_port_2", device_id="port 2"
+                ),
                 device_class=SensorDeviceClass.VOLUME_DISPENSED,
                 native_unit_of_measurement=Units.VOLUME_LITERS,
             ),
@@ -211,11 +225,6 @@ def test_kegtron_kt200():
             ),
             DeviceKey(key=KEY_SIGNAL_STRENGTH, device_id="port 2"): SensorDescription(
                 device_key=DeviceKey(key=KEY_SIGNAL_STRENGTH, device_id="port 2"),
-                device_class=DeviceClass.SIGNAL_STRENGTH,
-                native_unit_of_measurement=Units.SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
-            ),
-            DeviceKey(key=KEY_SIGNAL_STRENGTH, device_id=None): SensorDescription(
-                device_key=DeviceKey(key=KEY_SIGNAL_STRENGTH, device_id=None),
                 device_class=DeviceClass.SIGNAL_STRENGTH,
                 native_unit_of_measurement=Units.SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
             ),
@@ -236,13 +245,19 @@ def test_kegtron_kt200():
                 name="Keg Type Port 2",
                 native_value="Other (58.93 L)",
             ),
-            DeviceKey(key=f"{KEY_VOLUME_START}_port_2", device_id="port 2"): SensorValue(
-                device_key=DeviceKey(key=f"{KEY_VOLUME_START}_port_2", device_id="port 2"),
+            DeviceKey(
+                key=f"{KEY_VOLUME_START}_port_2", device_id="port 2"
+            ): SensorValue(
+                device_key=DeviceKey(
+                    key=f"{KEY_VOLUME_START}_port_2", device_id="port 2"
+                ),
                 name="Volume Start Port 2",
                 native_value=15.0,
             ),
             DeviceKey(key=f"{KEY_PORT_STATE}_port_2", device_id="port 2"): SensorValue(
-                device_key=DeviceKey(key=f"{KEY_PORT_STATE}_port_2", device_id="port 2"),
+                device_key=DeviceKey(
+                    key=f"{KEY_PORT_STATE}_port_2", device_id="port 2"
+                ),
                 name="Port State Port 2",
                 native_value="Configured",
             ),
@@ -251,8 +266,12 @@ def test_kegtron_kt200():
                 name="Port Name Port 2",
                 native_value="2nd Port",
             ),
-            DeviceKey(key=f"{KEY_VOLUME_DISPENSED}_port_2", device_id="port 2"): SensorValue(
-                device_key=DeviceKey(key=f"{KEY_VOLUME_DISPENSED}_port_2", device_id="port 2"),
+            DeviceKey(
+                key=f"{KEY_VOLUME_DISPENSED}_port_2", device_id="port 2"
+            ): SensorValue(
+                device_key=DeviceKey(
+                    key=f"{KEY_VOLUME_DISPENSED}_port_2", device_id="port 2"
+                ),
                 name="Volume Dispensed Port 2",
                 native_value=0.738,
             ),
