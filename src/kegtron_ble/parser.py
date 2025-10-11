@@ -27,6 +27,7 @@ KEGTRON_SIZE_DICT = {
     18927: "Corny (5.0 gal)",
     19711: "1/6 Barrel (5.167 gal)",
     19550: "1/6 Barrel (5.167 gal)",
+    19558: "1/6 Barrel (5.167 gal)",
     20000: "20L (5.283 gal)",
     20457: "Pin (5.404 gal)",
     29337: "1/4 Barrel (7.75 gal)",
