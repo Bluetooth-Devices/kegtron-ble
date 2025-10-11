@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v1.0.2 (2025-10-11)
+### Feature
+* Update dependencies
+* Fix release process
+* Fix barrel size recognition for 19.5L kegs
+
 ## v0.4.0 (2022-09-20)
 ### Feature
 * Use device_id for ports ([`554b196`](https://github.com/Bluetooth-Devices/kegtron-ble/commit/554b1967fe34ad6b444ac28bf292bdf3b2ec3197))
