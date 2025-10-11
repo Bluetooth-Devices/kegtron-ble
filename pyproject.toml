@@ -1,6 +1,6 @@
 [project]
 name = "kegtron-ble"
-version = "1.0.1"
+version = "1.0.2"
 description = "Kegtron BLE support"
 authors = [{ name = "Ernst Klamer", email = "e.klamer@gmail.com" }]
 license = "MIT"
