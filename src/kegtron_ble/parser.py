@@ -100,7 +100,7 @@ class KegtronBluetoothDeviceData(BluetoothData):
         """Update from BLE advertisement data."""
         _LOGGER.debug("Parsing Kegtron BLE advertisement data: %s", data)
 
-        (keg_size, vol_start, vol_disp, port, port_name) = unpack(">HHHB20s", data)
+        keg_size, vol_start, vol_disp, port, port_name = unpack(">HHHB20s", data)
 
         if port & (1 << 0) == 0:
             port_state = "Unconfigured (new device)"
