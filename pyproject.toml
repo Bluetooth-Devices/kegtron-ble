@@ -35,7 +35,7 @@ sphinx-rtd-theme = {version = ">=1,<4", optional = true}
 myst-parser = {version = ">=0.18,<4.1", optional = true}
 bluetooth-sensor-state-data = ">=1.6.1"
 sensor-state-data = ">=2.19.0"
-bluetooth-data-tools = ">=0.1.2"
+bluetooth-data-tools = ">=1.29.21"
 home-assistant-bluetooth = ">=1.9.2"
 
 [tool.poetry.extras]
