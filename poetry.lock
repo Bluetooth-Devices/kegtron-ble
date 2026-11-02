@@ -225,23 +225,23 @@ docs = ["Sphinx (>=5,<9)", "myst-parser (>=0.18,<4.1)", "sphinx-rtd-theme (>=1,<
 
 [[package]]
 name = "bluetooth-sensor-state-data"
-version = "1.9.0"
+version = "1.9.2"
 description = "Models for storing and converting Bluetooth Sensor State Data"
 optional = false
 python-versions = ">=3.11"
 groups = ["main"]
 files = [
-    {file = "bluetooth_sensor_state_data-1.9.0-py3-none-any.whl", hash = "sha256:adf3b17774011f188b8002c54b669e24cd60d3332ef42facd18baa60c56077e3"},
-    {file = "bluetooth_sensor_state_data-1.9.0.tar.gz", hash = "sha256:d289b86e4a65a5bccce6310f686d6f3e4ac4a2c56a13c2fccb475a6894667139"},
+    {file = "bluetooth_sensor_state_data-1.9.2-py3-none-any.whl", hash = "sha256:f6c4312a28a2a0f16fd8ea31af276024942a43d91e4ff9d0774a288fdaaaf9f1"},
+    {file = "bluetooth_sensor_state_data-1.9.2.tar.gz", hash = "sha256:1c2797b6cb0d25734429d02facf44fd795405bfdd2339a7f3ae983a3363efd2f"},
 ]
 
 [package.dependencies]
 bluetooth-data-tools = ">=1.28.0"
 habluetooth = ">=3.42.0"
-sensor-state-data = ">=2.0"
+sensor-state-data = ">=2.9.0"
 
 [package.extras]
-docs = ["Sphinx (>=5,<8)", "myst-parser (>=0.18,<4.1)", "sphinx-rtd-theme (>=1,<4)"]
+docs = ["Sphinx (>=5,<9)", "myst-parser (>=0.18,<4.1)", "sphinx-rtd-theme (>=1,<4)"]
 
 [[package]]
 name = "btsocket"
@@ -1431,9 +1431,10 @@ files = [
 name = "urllib3"
 version = "2.8.0"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
-optional = false
+optional = true
 python-versions = ">=3.10"
 groups = ["main"]
+markers = "extra == \"docs\""
 files = [
     {file = "urllib3-2.8.0-py3-none-any.whl", hash = "sha256:0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3"},
     {file = "urllib3-2.8.0.tar.gz", hash = "sha256:63bf2ead4c879426ebf22ef2a781eeb4aa3b4ae798a0435506f8687fd5bb9b63"},
@@ -1784,4 +1785,4 @@ docs = ["Sphinx", "myst-parser", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11,<3.14"
-content-hash = "15e52e95406ffe525729bd1e55caf8d42c3e0ce7cc75c72fb2cf0eb60fbecc29"
+content-hash = "2e786181dda50b9db037e9b19c6a398c5ce4d274e96e468df512936d7b718b45"
